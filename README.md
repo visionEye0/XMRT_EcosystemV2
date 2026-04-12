@@ -6,7 +6,6 @@
 ![XMRT Banner](https://img.shields.io/badge/XMRT-Ecosystem_V2-blue?style=for-the-badge&logo=monero)
 ![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
 ![Status](https://img.shields.io/badge/status-Active_Development-brightgreen?style=for-the-badge)
-![Coverage](https://img.shields.io/badge/coverage-95%25-success?style=for-the-badge)
 
 Welcome to **XMRT Ecosystem V2**, the comprehensive and unified monorepo for the decentralized XMRT (Monero Mobile Mining) platform. This documentation is your definitive guide to understanding, deploying, developing, and contributing to the most advanced ecosystem for mobile crypto-mining, autonomous DAO governance, and privacy-first financial operations.
 
@@ -118,8 +117,7 @@ Follow this guide to get a local instance of the complete XMRT_EcosystemV2 up an
 2.  **Install Global Dependencies**:
     The repository leverages Lerna and standard npm workspaces.
     ```bash
-    npm install
-    npm run bootstrap
+    npm run install:all
     ```
 
 ### Environment Configuration
@@ -135,13 +133,13 @@ To verify your setup, boot the local development environment:
     ```bash
     docker-compose -f docker-compose.dev.yml up -d
     ```
-2.  Start the backend APIs and agent runtimes:
+2.  Start the backend API and agent runtimes:
     ```bash
-    npm run start:api
+    npm run dev
     ```
-3.  In a separate terminal, launch the web portal:
+3.  If you need to build the frontend web portal:
     ```bash
-    npm run start:web
+    npm run build:frontend
     ```
 4.  Navigate to `http://localhost:3000`. You should see the unified XMRT landing dashboard. Log in using the default admin credentials noted in your `.env`.
 
@@ -152,8 +150,8 @@ To verify your setup, boot the local development environment:
 We adhere to clear organizational principles and an agile code structure to prevent the "mud-ball" effect common to monorepos.
 
 ### Code Structure and Organization
-*   `/apps`: Complete deployable applications (`web-dashboard`, `governance-portal`, `block-explorer`).
-*   `/packages`: Reusable libraries, UI kits, configuration templates, and internal SDKs (`@xmrt/integration-core`, `@xmrt/mesh-protocol`).
+*   `/apps`: Contains independent deployable applications (`api`, `mobile`, `web`).
+*   `/packages`: Shared libraries, integrations, and tools (e.g., `integration-core`, `shared`, `ui`).
 *   `/ai-agents`: Machine learning pipelines, prompt registries, and workflow scripts.
 *   `/contracts`: Solidity smart contracts, deployment manifests, and ABI exports.
 *   `/infrastructure`: Terraform modules, Kubernetes manifests, and Dockerfiles.
@@ -199,10 +197,10 @@ sequenceDiagram
 Our unified API surfaces GraphQL, REST endpoints, and WebSocket channels for varied use cases. 
 
 ### Available Endpoints and Their Purposes
-*   **`GET /api/v2/network/health`**: Retrieves current uptime metrics, active node count, and global hash rates.
-*   **`POST /api/v2/sync/mesh`**: Accepts encrypted payload batches from offline mesh networks reconnecting to the internet. 
-*   **`GET /api/v2/governance/proposals`**: Lists all active and closed DAO proposals along with live voting tallies.
-*   **`POST /api/v2/auth/login`**: Authenticates a user session, returning JWT tokens.
+*   **`GET /api/health`**: Retrieves current uptime metrics, active node count, and global hash rates.
+*   **`GET /api/mesh/nodes`**: Retrieves the list of active offline mesh networks currently synchronized.
+*   **`GET /api/governance/proposals`**: Lists all active and closed DAO proposals along with live voting tallies.
+*   **`GET /api/system/status`**: Main gateway for overall system telemetry and operational status.
 
 ### Request/Response Formats
 All requests to the backend require standard JSON payloads with Content-Type header `application/json`.
@@ -260,7 +258,7 @@ XMRT is horizontally scalable. The Node.js Core API can expand behind a load bal
 
 ## 7. Troubleshooting Section
 
-When dealing with a complex suite of integrations, problems occasionally arrise. Below are the standard operating procedures.
+When dealing with a complex suite of integrations, problems occasionally arise. Below are the standard operating procedures.
 
 ### Common Issues and Solutions
 *   **Database connection refused**: Ensure `docker-compose.dev.yml` is running, and that the specified ports in your `.env` perfectly match the docker containers (usually `5432`). 
@@ -305,8 +303,6 @@ Feature requests are managed exclusively via the DAO structure (`xmrt-gov-ui-kit
 *   **Architecture Flow (Section 2)**: Displays how Edge devices integrate with the centralized core.
 *   **CI/CD Dev Workflow (Section 4)**: Maps branches to GitHub actions and tests.
 *   **Production Deployment (Section 6)**: Illustrates the containerized progression.
-
-(For detailed screenshots of the frontend web portal and the Android application interfaces, please check the `/docs/screenshots` directory.)
 
 ---
 

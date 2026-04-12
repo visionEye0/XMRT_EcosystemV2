@@ -15,7 +15,7 @@ services:
       - .:/app
       - /app/node_modules  # Prevent node_modules override
     restart: unless-stopped
-    command: ["./dev.sh"]
+    command: ["npm", "run", "dev"]
     networks:
       - xmrt-dev-network
 
