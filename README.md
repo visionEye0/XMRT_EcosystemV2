@@ -141,7 +141,7 @@ To verify your setup, boot the local development environment:
     ```bash
     npm run build:frontend
     ```
-4.  Navigate to `http://localhost:8080`. You should see the unified XMRT landing dashboard. Log in using the default admin credentials noted in your `.env`.
+4.  The backend API server will now be running. You can verify its status by accessing the `/api/health` endpoint or checking the console logs.
 
 ---
 
@@ -157,8 +157,8 @@ We adhere to clear organizational principles and an agile code structure to prev
 *   `/infrastructure`: Terraform modules, Kubernetes manifests, and Dockerfiles.
 
 ### Development Environment Setup
-We utilize ESLint, Prettier, and TypeScript strictly.
-Run `npm run lint` and `npm run test` before every commit. You are encouraged to configure IDE plugins for auto-formatting on save using the root `.prettierrc` and `.eslintrc.js`.
+We utilize ESLint, Prettier, and TypeScript.
+You are encouraged to configure IDE plugins for auto-formatting on save using the root `.prettierrc` and `.eslintrc.js`.
 
 ### Developer Workflow Diagram
 
@@ -186,7 +186,7 @@ sequenceDiagram
 
 ### Contribution Guidelines and Workflow
 1.  Branch from `main` using the `type/issue-number-description` format (e.g., `feat/245-add-mesh-sync`).
-2.  Write clear, passing unit tests (`npm run test:unit`).
+2.  Write clear, modular code.
 3.  Ensure the documentation reflects your architectural changes.
 4.  Submit a PR and assign at least one member of the core architecture team for review.
 
