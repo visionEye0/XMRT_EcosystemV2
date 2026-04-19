@@ -312,7 +312,7 @@ Feature requests are managed exclusively via the DAO structure (`xmrt-gov-ui-kit
 This repository strictly follows **Semantic Versioning 2.0.0** (`MAJOR.MINOR.PATCH`). Since it operates as a monorepo, packages heavily tied together share `MAJOR` version releases, while internal unlinked packages adhere to independent `PATCH` increments.
 
 ### Update Procedures
-Dependency updates are managed via Dependabot configured in `.github/dependabot.yml`. Critical security patch updates are merged within 24 hours directly by the governing bots if tests pass. 
+Dependency updates are managed via Dependabot configured in `.GitHub/dependabot.yml`. Critical security patch updates are merged within 24 hours directly by the governing bots if tests pass. 
 
 ### Backward Compatibility Considerations
 Our API Gateway (Section 5) supports routing by version (e.g. `/api/v1/` vs `/api/v2/`). Deprecated endpoints remain functional for approximately two quarterly release cycles (6 months) before sunsetting.
